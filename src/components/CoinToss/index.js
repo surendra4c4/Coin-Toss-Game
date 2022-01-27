@@ -5,17 +5,16 @@ import './index.css'
 class CoinToss extends Component {
   state = {tossResult: 0, total: 0, heads: 0, tails: 0}
 
-  changeCoin = async () => {
+  changeCoin = () => {
     const toss = Math.floor(Math.random() * 2)
 
-    await this.setState({tossResult: toss})
+    this.setState({tossResult: toss})
     this.setState(prevState => ({total: prevState.total + 1}))
 
-    const {tossResult} = this.state
-    if (tossResult === 0) {
-      this.setState(prevState => ({heads: prevState.heads + 1}))
+    if (toss === 0) {
+      this.setState(prevState => ({heads: prevState.heads + 1, tossResult: 0}))
     } else {
-      this.setState(prevState => ({tails: prevState.tails + 1}))
+      this.setState(prevState => ({tails: prevState.tails + 1, tossResult: 1}))
     }
   }
 
